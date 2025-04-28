@@ -1,47 +1,52 @@
 import pygame
 import sys
+from vector.vector import Vector
 
-# Initialize all the Pygame modules
-pygame.init()
 
-# Define screen dimensions
-SCREEN_WIDTH = 640
-SCREEN_HEIGHT = 480
-screen_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
+class Game():
+    def __init__(self):
+        # Initialize all the Pygame modules
+        pygame.init()
 
-# Create the display surface (the window)
-# The screen variable is the surface we'll draw on
-screen = pygame.display.set_mode(screen_size)
+        # Define screen dimensions
+        SCREEN_WIDTH = 640
+        SCREEN_HEIGHT = 480
+        screen_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
-# Set the window title
-pygame.display.set_caption("Simple Pygame Screen")
+        # Create the display surface (the window)
+        # The screen variable is the surface we'll draw on
+        self.screen = pygame.display.set_mode(screen_size)
 
-# Create a clock object to help control the frame rate
-clock = pygame.time.Clock()
+        # Set the window title
+        pygame.display.set_caption("Simple Pygame Screen")
 
-# --- Main Game Loop ---
-running = True 
-while running:
+        # Create a clock object to help control the frame rate
+        self.clock = pygame.time.Clock()
 
-    # --- Event Handling ---
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False # Stop the loop
+    def run(self):
+        # --- Main Game Loop ---
+        running = True 
+        while running:
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
-                running = False
+            # --- Event Handling ---
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False # Stop the loop
 
-    # --- Game Logic ---
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        running = False
 
-    # --- Drawing ---
-    screen.fill((255, 255, 255))
+            # --- Game Logic ---
 
-    # --- Update the Display ---
-    pygame.display.flip() # Updates the entire screen
+            # --- Drawing ---
+            self.screen.fill((255, 255, 255))
 
-    # --- Control Frame Rate ---
-    clock.tick(60)
+            # --- Update the Display ---
+            pygame.display.flip() # Updates the entire screen
+
+            # --- Control Frame Rate ---
+            self.clock.tick(60)
 
 print("Exiting the game...")
 pygame.quit()
